@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_docs',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework_simplejwt'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -98,6 +99,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.Users'
 
 
 # Password validation

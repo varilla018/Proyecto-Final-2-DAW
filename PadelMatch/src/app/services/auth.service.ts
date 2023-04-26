@@ -17,5 +17,9 @@ export class AuthService {
     return this.http.post<any>(url, user);
   }
 
+  loginUser(user: any): Observable<any> {
+    const url = `${this.apiUrl}login/`;
+    return this.http.post<any>(url, user);
+  }
 
 }

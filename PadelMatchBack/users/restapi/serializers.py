@@ -1,6 +1,16 @@
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from users.models import Users
+from django.core.validators import EmailValidator
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(
+        required=True,
+        validators=[EmailValidator(message='Ingrese un correo electrónico válido')]
+    )
+    password = serializers.CharField(required=True)
+
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -21,3 +31,4 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         )
 
         return user
+    
