@@ -1,0 +1,24 @@
+<ion-content class="ion-padding login-register-page">
+  <img src="../../../assets/slides/Match.jpg" class="imagen">
+
+  <form (ngSubmit)="registrar()">
+    <ion-item>
+      <ion-label position="floating">Nombre de usuario</ion-label>
+      <ion-input type="text" required [(ngModel)]="first_name" name="first_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="email" required [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" required [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block">Registrarse</ion-button>
+  </form>
+
+  <p class="ion-text-center"><a class="register-link" href="/login">¿Ya tienes cuenta? Inicia sesión aquí</a></p>
+</ion-content>

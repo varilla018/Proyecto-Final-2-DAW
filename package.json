@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@capacitor/share": "^4.1.1",
+    "jetifier": "^2.0.0"
+  }
+}

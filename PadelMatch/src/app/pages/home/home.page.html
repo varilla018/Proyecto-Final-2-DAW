@@ -1,0 +1,185 @@
+<!-- MENU-->
+<ion-menu contentId="main-content" class="menuDesplegable">
+    <div class="divHeader">
+        <ion-header>
+            <ion-toolbar mode="ios">
+                <ion-title class="tituloMenu">Menú</ion-title>
+            </ion-toolbar>
+        </ion-header>
+    </div>
+    <ion-content class="ion-padding">
+        <ion-list>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/perfil">
+                    <ion-icon name="person-outline" slot="start"></ion-icon>
+                    <ion-label>Perfil</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/ligas">
+                    <ion-icon name="ribbon-outline" slot="start"></ion-icon>
+                    <ion-label>Ligas</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/torneos">
+                    <ion-icon name="trophy-outline" slot="start"></ion-icon>
+                    <ion-label>Torneos</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/mercado">
+                    <ion-icon name="swap-horizontal-outline" slot="start"></ion-icon>
+                    <ion-label>Mercado</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/login">
+                    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                    <ion-label>Cerrar sesión</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title class="tituloPagina">Inicio</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+
+        <div class="div1">
+            <h1 class="titulo">MI PLANTILLA</h1><br>
+            <p class="parrafoCards">Esta tu plantilla con tus jugadores actuales. Puedes participar en torneos con un
+                maximo de 4 jugadores, organizalos bien para no enfrentarlos entre ellos</p>
+
+            <!--Aqui iria una barra de busqueda para buscar y filtrar jugadores-->
+            <!--CARDS JUGADORES-->
+            <div class="div2">
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-card>
+                            <img src="../../../assets/slides/lebron.jpg" alt="Card Image">
+                            <ion-card-header>
+                                <ion-card-title class="tituloCard">J.LEBRON</ion-card-title>
+                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+                                Puntos sumados
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-card>
+                            <img src="../../../assets/slides/galan.jpg" alt="Card Image">
+                            <ion-card-header>
+                                <ion-card-title class="tituloCard">A.GALAN</ion-card-title>
+                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+                                Puntos sumados
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-card>
+                            <img src="../../../assets/slides/tapia.jpg" alt="Card Image">
+                            <ion-card-header>
+                                <ion-card-title class="tituloCard">TAPIA</ion-card-title>
+                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+                                Puntos sumados
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-card>
+                            <img src="../../../assets/slides/dinneno.jpg" alt="Card Image">
+                            <ion-card-header>
+                                <ion-card-title class="tituloCard">DINNENO</ion-card-title>
+                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+                                Puntos sumados
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <!--CARDS LIGA-->
+            <div class="div3">
+                <ion-card>
+                    <ion-card-content>
+                        <ion-item lines="none">
+                            <ion-avatar slot="start" class="avatarLigas">
+                                <img src="../../../assets/slides/torneosAvatar.jpg" alt="Card Image">
+                            </ion-avatar>
+                            <ion-label>
+                                <h1>Mis ligas</h1>
+                                <p>Ligas disponibles</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label>
+                                Crea o unete a una liga
+                            </ion-label>
+                        </ion-item>
+                    </ion-card-content>
+                    <ion-row>
+                        <ion-col>
+                            <ion-button expand="block" color="primary" routerLink="/ligas">Unirse a la Liga</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </div>
+            <!--CARDS TORNEOS-->
+
+            <div class="div4">
+                <h1 class="titulo2">PRÓXIMOS TORNEOS</h1><br>
+                <p class="parrafoCards">Aqui tienes los proximos torneos previstos de World Padel Tour como de Premier
+                    Padel.</p>
+            </div>
+            <div class="div5">
+                <ion-slides pager="true" [options]="slideOpts">
+                    <ion-slide *ngFor="let slide of slides">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <img [src]="slide.image">
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    <h2>{{ slide.title }}</h2>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="subtitle-row">
+                                <ion-col size="auto" class="icon-col">
+                                    <ion-icon name="calendar"></ion-icon>
+                                </ion-col>
+                                <ion-col>
+                                    <p class="subtittleTorneos">{{ slide.subtitle }}</p>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button routerLink="/torneos">{{ slide.button }}</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-slide>
+                </ion-slides>
+
+
+            </div>
+        </div>
+
+    </ion-content>

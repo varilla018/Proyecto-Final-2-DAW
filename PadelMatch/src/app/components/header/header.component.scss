@@ -1,0 +1,13 @@
+ion-menu::part(backdrop) {
+    background-color: #FFFF72;
+  }
+  
+  ion-menu::part(container) {
+    border-radius: 0 20px 20px 0;
+  
+    box-shadow: 4px 0px 16px #F7D547;
+  }
+
+  .menuTittle{
+    background-color: #F7D547;
+  }

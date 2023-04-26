@@ -1,0 +1,116 @@
+1.Tematica
+
+La aplicacion que pretendo desarrollar es una que todavia no existe y que creo que a muchos fans de este deporte les interesaria. Dicha aplicacion es de padel, en el que tendremos 5 jugadores iniciales que nos daran aleatoriamente
+entre el top 100 de World Padel Tour que es la competicion de padel mas importante de este deporte. Cada jugador tendra un precio, estos jugadores solo podran tener un unico dueño pero se podran vender y comprar en un mercado de 
+subastas que se actualiza cada 24 horas.
+Podras inscribir los jugadores a todos los torneos de World Padel Tour asi como tambien de Premier Padel y segun el desempeño de dichos jugadores en estos torneos recibiran puntos, asi como el usuario recibira monedas. Segun todos
+los puntos sumados de dichos jugadores en posesion se realiza una clasificacion terminando a fin de año donde acaban todos estos torneos y donde se vera quien es el campeon de dicha liga.
+
+
+2.Epicas de la aplicacion
+
+-La aplicacion permitira gestion de usuarios.
+
+-La aplicacion permitira a dichos usuarios comprar y vender jugadores mediante subasta.
+
+-La aplicacion tendra un mercado donde se podran comprar y vender dichos jugadores, en este mercado habra filtros por nombre, precio, ranking, etc...
+
+-La aplicacion tendra un apartado donde se podran crear y unirse a ligas con amigos compartiendo enlaces o por un numero de identificacion.
+
+-La aplicacion estara al corriente de los posibles errores que pueda cometer el usuario informando asi de tal error.
+
+-La aplicacion tendra un apartado de torneos donde se podran registrar dichos jugadores a estos torneos, aqui tambien podremos editar la alineacion que queramos y nos mostrara los cuadros de octavos,cuartos, semifinal y final.
+
+-La aplicacion tendra un apartado ranking donde apareceran el top 100 de jugadores ordenados descendentemente.
+
+-La aplicacion tendra pantalla de registro y logeo de usuarios.
+
+-La aplicacion tendra un apartado de notificaciones donde mostrara que usuarios han comprado dichos jugadores o vendidos.
+
+
+
+3.Requisitos de la interfaz de usuario.
+
+La interfaz sera sencilla de entender y de usar, se adaptara a cualquier tipo de pantalla asi como tendra una estetica limpia y minimalista.
+
+
+
+
+4.Requisitos tecnicos.
+
+La aplicacion utilizara las siguientes tecnologias.
+
+-Base de datos: PostgreeSql
+
+-Framework: Django y Angular
+
+-Lenguaje BackEnd: Python
+
+-Lenguaje FrontEnd: Html, css, javascript.
+
+-Motor de vistas/plantillas: Angular
+
+
+
+
+
+5.Requisitos del despliegue de la aplicacion.
+
+Tanto el codigo ejecutable como la base de datos estaran desplegados en Firebase usando su prueba gratuita por un tiempo limitado.
+
+
+
+
+
+6. Planificacion temporal inicial de los hitos del proyecto.
+
+
+HITOS
+
+- Memoria Proyecto - Planificacion de funcionalidades que tendra la aplicacion.
+
+- Memoria Proyecto - Explicacion de funcion de los puntos, clasificacion, compra/venta de jugadores, etc...
+
+- Modelado de interfaz
+
+- Memoria Proyecto - Historias de usuario
+
+- Creacion de BD
+
+- Comprobacion de la base de datos asi como sus funciones
+
+- Creacion de todas las funcionalidades de codigo ejecutable
+
+- Despliegue en servidor y pruebas
+
+- Ajustes tecnicos o de interfaz
+
+- Correcion de errores
+
+- Memoria Proyecto - Actualizacion final.
+
+Son 13 semanas.
+
+
+
+
+
+dbdiagram.iog
+
+
+
+QUE TENGO QUE HACER
+
+
+CASOS DE USO.
+
+Modelado de datos.
+
+
+
+
+
+
+
+
+

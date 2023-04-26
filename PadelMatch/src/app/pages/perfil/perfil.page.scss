@@ -1,0 +1,97 @@
+ion-avatar {
+    --border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    margin-bottom: 10%;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+
+  /* Estilos para la card */
+.card {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    padding: 20px;
+    margin: 20px;
+    max-width: 600px;
+    text-align: left;
+  }
+  
+  /* Estilos para el botón de cambiar contraseña */
+  #changePasswordBtn {
+    background-color: #4CAF50;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+  
+  #changePasswordBtn:hover {
+    background-color: #3e8e41;
+  }
+  
+  /* Estilos para el modal */
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  /* Estilos para el contenido del modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  /* Estilos para el botón de cerrar */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+    
+  ion-button {
+    --background: #F7D547;
+  }
+  
+.colorReclamar{
+  --background: transparent;
+  color: #625f5f;
+}
+
+.logros{
+  margin-top: 10%;
+}
+
+.cardContra{
+  margin-top: 7%;
+}

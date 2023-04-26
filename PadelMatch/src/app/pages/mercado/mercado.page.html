@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mercado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        JUGADORES
+      </ion-card-title>
+      <p class="parrafoCards">Este es el mercado de jugadores. El precio y valoracion de cada jugador esta basada en su puntuacion, historico y otros factores.</p>
+    </ion-card-header>
+    <ion-card-content>
+      <!--Esta linea del contador de 24 horas para el mercado en forma de subasta hay que arreglarlo-->
+      <!--<ion-countdown [time]="timeInSeconds" format="HH:mm:ss"></ion-countdown> -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of items">
+        <ion-card>
+          <img src="{{ item.image }}" alt="{{ item.name }}">
+          <ion-card-header>
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ item.points }}</p>
+            <div class="price-row">
+              <ion-icon name="cash-outline" class="price-icon"></ion-icon>
+              <span class="price-label">{{ item.price }}</span>
+            </div>
+          </ion-card-content>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" (click)="comprar(item)">Comprar</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" (click)="vender(item)">Vender</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,122 @@
+ion-menu::part(backdrop) {
+    background-color: #FFFF72;
+  }
+  
+  ion-menu::part(container) {
+    border-radius: 0 20px 20px 0;
+  
+    box-shadow: 4px 0px 16px #F7D547;
+  }
+
+  .menuTittle{
+    background-color: #F7D547;
+  }
+
+  .titulo{
+    color: #616160;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  .parrafoCards{
+    color: #616160;
+    margin-top: -3%;
+    text-align: justify;
+    margin-bottom: 8%;
+    margin-left: 2%;
+    margin-right: 3%;
+  }
+
+.div1{
+  background-color: #fafaeb !important ;
+  margin-top: -3%;
+}  
+
+.div2{
+  background-color: #ffffff !important ;
+}  
+
+.div3{
+  margin-top: 10%;
+  background-color: #fafaeb !important ;
+}
+
+.titulo2{
+  color: #616160;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 13%;
+}
+
+ion-grid {
+  height: 100%;
+  align-items: center;
+}
+
+ion-row {
+  height: 33%;
+}
+
+img {
+  width: 90%;
+  height: 70%;
+}
+
+h2 {
+  margin-top: -18%;
+}
+
+ion-button {
+  --background: #4A4A4A;
+  --border-radius: 20px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  color: #fff;
+  margin-bottom: 9%;
+}
+
+.torneosP{
+  margin-top: -10%;
+
+}
+
+.div5{
+  background-color: #ffffff !important;
+}
+
+.icon-col {
+  margin-top: -18%;
+  margin-left: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.subtittleTorneos{
+  margin-left: -15%;
+  margin-top: -16%;
+}
+
+.subtitle-row {
+  align-items: center;
+  margin-left: -5%;
+  margin-top: 5%;
+}
+
+.tituloCard{
+  font-size: large;
+}
+
+.avatarLigas{
+  width: 30%;
+  height: 90%;
+}
+
+.iontittle{
+  margin-left: -30%;
+  color: #616160;
+}
+
+.tituloMenu{
+  background-color: #FFFF72!important;
+}

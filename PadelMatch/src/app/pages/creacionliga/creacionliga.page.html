@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/ligas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Creación de Liga</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="cardCrear">
+    <ion-card-header>
+      <ion-card-title>Crear una Liga</ion-card-title>
+      <ion-card-subtitle>Introduce el nombre de la liga y genera un código de acceso.</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre de la liga</ion-label>
+        <ion-input [(ngModel)]="nombreLiga"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Código de acceso</ion-label>
+        <ion-input [(ngModel)]="codigoLiga"></ion-input>
+      </ion-item>
+      <ion-button class="primary-button" expand="block" (click)="generar()">Crear Liga</ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-content>
+    <ion-button >Compartir Liga</ion-button>
+  </ion-content>
+  
+</ion-content>
