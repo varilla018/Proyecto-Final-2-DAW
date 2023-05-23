@@ -1,0 +1,60 @@
+CREATE TABLE players (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    ranking INTEGER,
+    points INTEGER,
+    price NUMERIC(10, 2)
+);
+
+CREATE TABLE achievements (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    description TEXT,
+    points INTEGER
+);
+
+CREATE TABLE leagues (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    code VARCHAR(10),
+    password VARCHAR(20)
+);
+
+CREATE TABLE tournaments (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    description TEXT,
+    date_start TIMESTAMP,
+    date_end TIMESTAMP,
+    league_id INTEGER REFERENCES leagues(id) ON DELETE CASCADE
+);
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    email VARCHAR(254) UNIQUE,
+    password VARCHAR(128)
+);
+
+CREATE TABLE user_leagues (
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    league_id INTEGER REFERENCES leagues(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, league_id),
+    UNIQUE (user_id, league_id)
+);
+
+CREATE TABLE user_achievements (
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    achievement_id INTEGER REFERENCES achievements(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, achievement_id),
+    UNIQUE (user_id, achievement_id)
+);
+
+CREATE TABLE user_players (
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    player_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, player_id),
+    UNIQUE (user_id, player_id)
+);
+
