@@ -12,6 +12,8 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(required=True)
 
 
+from rest_framework_simplejwt.tokens import RefreshToken
+
 class RegisterUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
 
@@ -29,6 +31,11 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             password=validated_data['password']
         )
+        refresh = RefreshToken.for_user(user)
+        return {
+            'user': self.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }
 
-        return user
     

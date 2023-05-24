@@ -19,26 +19,27 @@ export class LoginPage {
     public toastController: ToastController
   ) { }
 
-  iniciarSesion() {
+  login() {
     const user = {
       email: this.email,
       password: this.password
     };
-
     this.authService.loginUser(user).subscribe(
       (data: any) => {
+        console.log(data);
+        localStorage.setItem('user_id', data.user_id);
         this.router.navigate(['/home']);
       },
-      (error: any) => {
-        this.presentToast('Error al iniciar sesión');
+      error => {
         console.log(error);
+        this.presentToast('Error al iniciar sesión');
       }
     );
   }
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
-      message,
+      message: message,
       duration: 2000
     });
     toast.present();

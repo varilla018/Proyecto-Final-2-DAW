@@ -87,6 +87,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PadelMatchBack.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

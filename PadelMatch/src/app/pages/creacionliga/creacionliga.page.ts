@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
-const { Share } = Plugins;
+import { LeagueService } from 'src/app/services/league.service';
 
 @Component({
   selector: 'app-creacionliga',
@@ -10,25 +8,19 @@ const { Share } = Plugins;
 })
 export class CreacionligaPage {
 
-  nombreLiga: string = '';
-  codigoLiga: string = '';
+  leagueName: string = '';
+  leaguePassword: string = '';
 
-  constructor(public navCtrl: NavController) { }
+  constructor(private leagueService: LeagueService) { }  // Inyecta tu servicio
 
-  generar() {
-    // Aquí podrías generar un código aleatorio para la liga
-    this.codigoLiga = Math.random().toString(36).substr(2, 8).toUpperCase();
+  createLeague() {
+    const leagueData = {
+      name: this.leagueName,
+      password: this.leaguePassword || null,  // Si la contraseña no se establece, envía null
+    };
+    this.leagueService.createLeague(leagueData).subscribe((response) => {
+      console.log(response); // Aquí deberías ver un registro de la liga recién creada
+      // Aquí también puedes limpiar los campos de entrada o navegar a otra página si lo deseas
+    });
   }
-
-  /*COMPARTIR POR WHATSAPP HAY QUE ARREGLARLO
-  shareOnWhatsApp() {
-    Share.share({
-      title: 'Compartir Liga',
-      text: 'Únete a mi liga usando este código: XXXXXX',
-      url: '',
-      dialogTitle: 'Compartir Liga'
-    }).then(() => console.log('Shared on WhatsApp'));
-  }
-*/
-  
 }

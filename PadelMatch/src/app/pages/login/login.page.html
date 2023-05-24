@@ -1,6 +1,7 @@
 <ion-content class="ion-padding login-register-page">
   <img src="../../../assets/slides/Match.jpg" class="imagen">
-  <form class="formLogin">
+
+  <form (ngSubmit)="login()">
     <ion-item>
       <ion-label position="floating">Correo electrónico</ion-label>
       <ion-input type="email" required [(ngModel)]="email" name="email"></ion-input>
@@ -11,7 +12,7 @@
       <ion-input type="password" required [(ngModel)]="password" name="password"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" (click)="iniciarSesion()">Iniciar sesión</ion-button>
+    <ion-button type="submit" expand="block">Iniciar sesión</ion-button>
   </form>
 
   <p class="ion-text-center"><a class="register-link" href="/register">¿No tienes cuenta? Regístrate aquí</a></p>

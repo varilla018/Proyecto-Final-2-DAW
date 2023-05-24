@@ -11,23 +11,19 @@
   <ion-card class="cardCrear">
     <ion-card-header>
       <ion-card-title>Crear una Liga</ion-card-title>
-      <ion-card-subtitle>Introduce el nombre de la liga y genera un código de acceso.</ion-card-subtitle>
+      <ion-card-subtitle>Introduce el nombre de la liga y (opcionalmente) establece una contraseña.</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
         <ion-label position="floating">Nombre de la liga</ion-label>
-        <ion-input [(ngModel)]="nombreLiga"></ion-input>
+        <ion-input [(ngModel)]="leagueName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Código de acceso</ion-label>
-        <ion-input [(ngModel)]="codigoLiga"></ion-input>
+        <ion-label position="floating">Contraseña (opcional)</ion-label>
+        <ion-input [(ngModel)]="leaguePassword" type="password"></ion-input>
       </ion-item>
-      <ion-button class="primary-button" expand="block" (click)="generar()">Crear Liga</ion-button>
+      <ion-button class="primary-button" expand="block" (click)="createLeague()">Crear Liga</ion-button>
     </ion-card-content>
   </ion-card>
-  
-  <ion-content>
-    <ion-button >Compartir Liga</ion-button>
-  </ion-content>
-  
 </ion-content>
+
