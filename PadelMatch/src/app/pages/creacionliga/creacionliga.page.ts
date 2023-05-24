@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { LeagueService } from 'src/app/services/league.service';
+import { LeagueService } from '../../services/league.service';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-creacionliga',
@@ -7,20 +9,40 @@ import { LeagueService } from 'src/app/services/league.service';
   styleUrls: ['./creacionliga.page.scss'],
 })
 export class CreacionligaPage {
-
   leagueName: string = '';
   leaguePassword: string = '';
 
-  constructor(private leagueService: LeagueService) { }  // Inyecta tu servicio
+  constructor(
+    private leagueService: LeagueService,
+    private router: Router,
+    public toastController: ToastController
+  ) {}
 
   createLeague() {
     const leagueData = {
       name: this.leagueName,
-      password: this.leaguePassword || null,  // Si la contraseña no se establece, envía null
+      password: this.leaguePassword,
+      creator: localStorage.getItem('user_id') // Obtener el user_id del localStorage
     };
-    this.leagueService.createLeague(leagueData).subscribe((response) => {
-      console.log(response); // Aquí deberías ver un registro de la liga recién creada
-      // Aquí también puedes limpiar los campos de entrada o navegar a otra página si lo deseas
+
+    this.leagueService.createLeague(leagueData).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.presentToast('Liga creada correctamente.');
+        this.router.navigate(['/leagues']);
+      },
+      (error: any) => {
+        console.log(error);
+        this.presentToast('Error al crear la liga.');
+      }
+    );
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
     });
+    toast.present();
   }
 }

@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
+from corsheaders.defaults import default_headers  # Importar default_headers para CORS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +54,10 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8100',  # o el origen de tu aplicación Angular
 ]
 
+# Configuración para permitir el header 'User-Id'
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'User-Id',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,6 +99,11 @@ REST_FRAMEWORK = {
     ],
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=365),  # Un año de vida para el token de acceso
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=365),  # Un año de vida para el token de actualización
+    
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
