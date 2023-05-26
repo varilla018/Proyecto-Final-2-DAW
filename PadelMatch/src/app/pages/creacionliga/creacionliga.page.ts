@@ -29,7 +29,17 @@ export class CreacionligaPage {
       (data: any) => {
         console.log(data);
         this.presentToast('Liga creada correctamente.');
-        this.router.navigate(['/leagues']);
+        // Obtener las ligas del usuario después de crear una liga
+        this.leagueService.getUserLeagues().subscribe(
+          (userLeagues) => {
+            // Navegar a la página de ligas con la lista actualizada de ligas
+            this.router.navigate(['/ligas'], { state: { userLeagues: userLeagues } });
+          },
+          (error: any) => {
+            console.log(error);
+            this.presentToast('Error al obtener las ligas del usuario.');
+          }
+        );
       },
       (error: any) => {
         console.log(error);
