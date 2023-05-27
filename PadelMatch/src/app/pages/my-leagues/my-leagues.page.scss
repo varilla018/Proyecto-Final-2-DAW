@@ -1,0 +1,84 @@
+ion-button {
+    --background: #F7D547;
+    color: #070707;
+  }
+  
+  .rounded-button {
+    border-radius: 20px; /* Agrega el radio de borde deseado */
+    --border-top-left-radius: 0;
+    --border-top-right-radius: 0;
+    --border-bottom-left-radius: 0;
+    --border-bottom-right-radius: 0;
+  }
+  
+  ion-card {
+    margin: 8% auto;
+    width: 92%;
+  }
+  
+  ion-card-header {
+    background-color: #f2f2f2;
+  }
+  
+  ion-card-title {
+    text-align: center;
+    color: #070707;
+  }
+  
+  ion-card-subtitle {
+    color: #616160;
+    text-align: center;
+    margin-top: 5%;
+  }
+  
+  ion-card-content {
+    background-color: #f9f9f9;
+    padding: 1rem !important;
+  }
+  
+  ion-item {
+    --background: #f2f2f2;
+  }
+  
+  ion-label {
+    color: #070707;
+  }
+  
+  ion-input {
+    color: #070707;
+    --placeholder-color: #b3b3b3;
+  }
+  
+  ion-toolbar {
+    --background: #F7D547;
+    --color: #070707;
+  }
+  
+  ion-title {
+    display: flex;
+    align-items: center;
+  }
+  
+  ion-icon {
+    margin-right: 0.5rem;
+  }
+
+  .league-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .action-button {
+    width: 50%;
+    font-size: small;
+    --background: #8AE386;
+  }
+  
+  .action-button1 {
+    width: 50%;
+    font-size: small;
+  }
+  
+  .action-button2{
+    width: 100%;
+  }
