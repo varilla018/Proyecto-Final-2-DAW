@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'creacionliga',
     loadChildren: () => import('./pages/creacionliga/creacionliga.module').then( m => m.CreacionligaPageModule)
   },
+  {
+    path: 'my-leagues/:id',
+    loadChildren: () => import('./pages/my-leagues/my-leagues.module').then( m => m.MyLeaguesPageModule)
+  },
 ];
 
 @NgModule({

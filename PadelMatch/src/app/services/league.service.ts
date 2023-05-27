@@ -70,9 +70,29 @@ export class LeagueService {
     return this.http.put<any>(`${this.apiUrl}${id}/`, leagueData);
   }
 
-  deleteLeague(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}${id}/`);
-  }
+  deleteLeague(leagueId: number): Observable<any> {
+    const token = localStorage.getItem('access_token'); // Obtener el token de acceso del localStorage
+    const userId = localStorage.getItem('user_id'); // Obtener el id del usuario del localStorage
+
+    if (!token) {
+        throw new Error("Access token is not available in localStorage");
+    }
+
+    if (!userId) {
+        throw new Error("User id is not available in localStorage");
+    }
+
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Incluir el token de acceso en el encabezado de la solicitud
+            'User-Id': userId // Incluir el id del usuario en el encabezado de la solicitud
+        })
+    };
+
+    return this.http.delete<any>(`${this.apiUrl}delete/`, { body: { leagueId: leagueId }, headers: httpOptions.headers });
+}
+
 
   getLeagueUsers(leagueId: number): Observable<any> {
     const token = localStorage.getItem('access_token');

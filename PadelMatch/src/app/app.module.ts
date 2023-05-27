@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { CommonModule } from '@angular/common';
 import { CountdownModule } from 'ngx-countdown';
-import { HttpClientModule } from '@angular/common/http'; // Agregar esta línea
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

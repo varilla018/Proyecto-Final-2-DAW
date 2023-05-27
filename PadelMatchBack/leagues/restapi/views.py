@@ -109,3 +109,27 @@ class LeagueViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(user_leagues, many=True)
 
         return Response(serializer.data)  # Return updated leagues
+
+    @action(detail=False, methods=['delete'])
+    def delete(self, request):
+        league_id = request.data.get('leagueId')
+        user_id = request.headers.get('User-Id')
+        if not league_id or not user_id:
+            return Response({"detail": "Both User-Id header and leagueId are required."}, status=status.HTTP_400_BAD_REQUEST)
+    
+        try:
+            user = Users.objects.get(id=user_id)
+        except Users.DoesNotExist:
+            return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            league = League.objects.get(id=league_id)
+        except League.DoesNotExist:
+            return Response({"detail": "No league found with this id."}, status=status.HTTP_404_NOT_FOUND)
+    
+        if league.creator.id != user.id:
+            return Response({"detail": "You are not the creator of this league."}, status=status.HTTP_403_FORBIDDEN)
+
+        league.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
