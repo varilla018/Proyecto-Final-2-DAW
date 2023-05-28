@@ -1,9 +1,71 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/ligas"></ion-back-button>
     </ion-buttons>
-    <ion-title>Ligas</ion-title>
+    <ion-title>
+      {{league?.name}}
+    </ion-title>    
   </ion-toolbar>
 </ion-header>
 
+<ion-content color="light">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>INVITA NUEVOS MIEMBROS</ion-card-title>
+      <ion-card-subtitle>Comparte la liga con amigos y demuestra quién sabe más de pádel</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="league-actions">
+        <ion-button class="action-button">
+          <ion-icon name="logo-whatsapp"></ion-icon> COMPARTIR LIGA
+        </ion-button>
+        <ion-button class="action-button1">COPIAR CÓDIGO</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>EQUIPOS</ion-card-title>
+        <ion-card-subtitle>Clasificación general actual de los participantes de la liga</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        <div *ngFor="let user of leagueUsers; index as i">
+            <ion-card class="clasificacion">
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-card-subtitle>#{{i + 1}}</ion-card-subtitle>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-card-title class="nameRanking">{{user.first_name}}</ion-card-title>
+                        </ion-col>
+                        <ion-col size="4">
+                            <ion-card-subtitle class="points">Puntos: 1</ion-card-subtitle>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+            </ion-card>
+        </div>
+    </ion-card-content>
+</ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>DETALLES DE LA LIGA</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-input placeholder="Nuevo nombre de la liga"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contraseña</ion-label>
+        <ion-input placeholder="Nueva contraseña"></ion-input>
+      </ion-item>
+      <ion-button class="action-button2">GUARDAR CAMBIOS</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

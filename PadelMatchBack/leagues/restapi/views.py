@@ -1,10 +1,13 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from users.restapi.serializers import UserSerializer
 from leagues.models import League
 from leagues.restapi.serializers import LeagueSerializer
 from users.models import Users
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.decorators import api_view
 
 class LeagueViewSet(viewsets.ModelViewSet):
     queryset = League.objects.all()
@@ -133,3 +136,13 @@ class LeagueViewSet(viewsets.ModelViewSet):
         league.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+    @action(detail=True, methods=['get'])
+    def get_league_users(self, request, pk=None):  # nota el 'self' y el cambio de 'id' a 'pk'
+        league = get_object_or_404(League, pk=pk)
+        users = league.users.all()  # o lo que sea apropiado para obtener los usuarios de la liga
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+
+    

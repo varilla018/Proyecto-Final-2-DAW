@@ -13,8 +13,22 @@ export class LeagueService {
   constructor(private http: HttpClient) { }
 
   getLeagues(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
-  }
+    const token = localStorage.getItem('access_token');
+    
+    if (!token) {
+        throw new Error("Access token is not available in localStorage");
+    }
+
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        })
+    };
+
+    return this.http.get<any>(this.apiUrl, httpOptions);
+}
+
 
   createLeague(leagueData: any): Observable<any> {
     const token = localStorage.getItem('access_token'); // Obtener el token de acceso del localStorage
@@ -114,7 +128,7 @@ export class LeagueService {
       })
     };
 
-    return this.http.get<any>(`${this.apiUrl}${leagueId}/users/`, httpOptions);
+    return this.http.get<any>(`${this.apiUrl}${leagueId}/get_league_users/`, httpOptions);
   }
 
   // league.service.ts

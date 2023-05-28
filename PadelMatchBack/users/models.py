@@ -25,3 +25,5 @@ class Users(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name']
+
+    
