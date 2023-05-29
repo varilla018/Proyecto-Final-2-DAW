@@ -125,3 +125,16 @@ ion-button {
   background-color: #fafaeb !important ;
   margin-top: -3%;
 }  
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.circle-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}

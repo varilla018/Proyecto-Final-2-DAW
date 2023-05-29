@@ -7,6 +7,7 @@ export const environment = {
   urlUsuario: 'http://127.0.0.1:3000/usuario/',
   apiUrl: 'http://localhost:8000/',
   urlLeague: 'http://127.0.0.1:8000/leagues/',
+  urlPlayer: 'http://127.0.0.1:8000/players/',
 
 
 };

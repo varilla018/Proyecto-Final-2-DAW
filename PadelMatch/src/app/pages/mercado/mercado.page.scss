@@ -52,5 +52,52 @@ ion-card {
   
   ion-button {
     --background: #F7D547;
+    font-size: small;
   }
   
+  .image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.player-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.player-name {
+    font-size: 14px;
+}
+
+.player-surname {
+    font-size: 12px;
+}
+
+.cash-container {
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start; /* Alinea los ítems a la izquierda */
+  margin-right: 20px; /* Añade un margen a la derecha para dar espacio a otros elementos */
+}
+
+.cash-value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start; 
+  margin-left: 10px; /* Añade un margen a la izquierda para separar el texto del ícono */
+}
+
+.cash-icon.golden {
+  color: gold;
+  font-size: 300%;
+}
+
+.cash-value {
+  font-size: larger;
+}
+
+.cash-label {
+  font-size: medium;
+}

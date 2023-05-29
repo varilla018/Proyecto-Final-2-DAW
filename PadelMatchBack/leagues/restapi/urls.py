@@ -12,3 +12,4 @@ urlpatterns = [
     path('leagues/delete/', LeagueViewSet.as_view({'delete': 'delete'}), name='delete_league'),
 
 ]
+

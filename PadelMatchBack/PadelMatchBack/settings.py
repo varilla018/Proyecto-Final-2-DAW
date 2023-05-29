@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+CORS_ALLOW_ALL_ORIGINS = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,8 +51,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt'
 ]
 
+
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8100',  # o el origen de tu aplicación Angular
+    'http://localhost:8100',
+      # o el origen de tu aplicación Angular
 ]
 
 # Configuración para permitir el header 'User-Id'
@@ -68,9 +71,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'corsheaders.middleware.CorsPostCsrfMiddleware',
 ]
+
 
 ROOT_URLCONF = 'PadelMatchBack.urls'
 

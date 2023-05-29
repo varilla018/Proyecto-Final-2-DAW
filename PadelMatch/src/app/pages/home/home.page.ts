@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlayerService } from '../../services/players.service';
 
 interface Slide {
   image: string;
@@ -12,35 +13,27 @@ interface Slide {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-
+export class HomePage implements OnInit {
+  players: any;
   slides: Slide[] = [
-    {
-      image: '../../../assets/slides/torneo1.png',
-      title: 'La Rioja Padel Open 1000',
-      subtitle: 'Del 07/03 al 12/03',
-      button: 'Ver más'
-    },
-    {
-      image: '../../../assets/slides/torneo2.png',
-      title: 'Chile Padel Open 1000 ',
-      subtitle: 'Del 13/03 al 19/03',
-      button: 'Ver más'
-    },
-    {
-      image: '../../../assets/slides/torneo3.png',
-      title: 'Paraguay Padel Open 1000',
-      subtitle: 'Del 20/03 al 26/03',
-      button: 'Ver más'
-    }
+    // tus diapositivas aquí...
   ];
-
   slideOpts = {
     slidesPerView: 1,
     spaceBetween: 10,
     centeredSlides: true
   };
 
-  constructor() {}
+  constructor(private playerService: PlayerService) {}  // Actualizar a PlayerService
 
+  ngOnInit() {
+    this.playerService.getUserPlayers().subscribe(  // Actualizar a getUserPlayers
+      data => {
+        this.players = data;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
 }

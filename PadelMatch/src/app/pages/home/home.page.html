@@ -62,84 +62,24 @@
             <!--CARDS JUGADORES-->
             <div class="div2">
                 <ion-row>
-                    <ion-col size="6">
-                        <ion-card>
-                            <img src="../../../assets/slides/lebron.jpg" alt="Card Image">
-                            <ion-card-header>
-                                <ion-card-title class="tituloCard">J.LEBRON</ion-card-title>
-                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
-                            </ion-card-header>
-                            <ion-card-content>
-                                Puntos sumados
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-col>
-                    <ion-col size="6">
-                        <ion-card>
-                            <img src="../../../assets/slides/galan.jpg" alt="Card Image">
-                            <ion-card-header>
-                                <ion-card-title class="tituloCard">A.GALAN</ion-card-title>
-                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
-                            </ion-card-header>
-                            <ion-card-content>
-                                Puntos sumados
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-col>
+                  <ion-col size="6" *ngFor="let player of players">
+                    <ion-card>
+                        <div class="image-container">
+                            <img src="../../../assets/slides/avatar2.jpg" class="circle-image" alt="Circular Image">
+                        </div>
+                      <ion-card-header>
+                        <ion-card-title class="tituloCard">{{ player.name }}</ion-card-title>
+                        <ion-card-title class="tituloCard">{{ player.surname }}</ion-card-title>
+                        <ion-card-subtitle>Puntuación</ion-card-subtitle>
+                      </ion-card-header>
+                      <ion-card-content>
+                        Puntos: {{ player.points }}
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
                 </ion-row>
-                <ion-row>
-                    <ion-col size="6">
-                        <ion-card>
-                            <img src="../../../assets/slides/tapia.jpg" alt="Card Image">
-                            <ion-card-header>
-                                <ion-card-title class="tituloCard">TAPIA</ion-card-title>
-                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
-                            </ion-card-header>
-                            <ion-card-content>
-                                Puntos sumados
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-col>
-                    <ion-col size="6">
-                        <ion-card>
-                            <img src="../../../assets/slides/dinneno.jpg" alt="Card Image">
-                            <ion-card-header>
-                                <ion-card-title class="tituloCard">DINNENO</ion-card-title>
-                                <ion-card-subtitle>Puntuacion</ion-card-subtitle>
-                            </ion-card-header>
-                            <ion-card-content>
-                                Puntos sumados
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-col>
-                </ion-row>
-            </div>
-            <!--CARDS LIGA-->
-            <div class="div3">
-                <ion-card>
-                    <ion-card-content>
-                        <ion-item lines="none">
-                            <ion-avatar slot="start" class="avatarLigas">
-                                <img src="../../../assets/slides/torneosAvatar.jpg" alt="Card Image">
-                            </ion-avatar>
-                            <ion-label>
-                                <h1>Mis ligas</h1>
-                                <p>Ligas disponibles</p>
-                            </ion-label>
-                        </ion-item>
-                        <ion-item lines="none">
-                            <ion-label>
-                                Crea o unete a una liga
-                            </ion-label>
-                        </ion-item>
-                    </ion-card-content>
-                    <ion-row>
-                        <ion-col>
-                            <ion-button expand="block" color="primary" routerLink="/ligas">Unirse a la Liga</ion-button>
-                        </ion-col>
-                    </ion-row>
-                </ion-card>
-            </div>
+              </div>
+              
             <!--CARDS TORNEOS-->
 
             <div class="div4">

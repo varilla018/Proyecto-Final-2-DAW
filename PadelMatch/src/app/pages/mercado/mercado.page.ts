@@ -1,41 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CountdownConfig } from 'ngx-countdown';
- 
+import { PlayerService } from '../../services/players.service';
+
 interface Item {
+  id: string;
   name: string;
-  points: string;
-  price: string;
-  image: string;
+  surname: string;
+  ranking: number;
+  points: number;
+  winrate: number;
+  price: number;
 }
- 
+
 @Component({
   selector: 'app-mercado',
   templateUrl: './mercado.page.html',
   styleUrls: ['./mercado.page.scss'],
 })
-export class MercadoPage {
- 
-  public items: Item[] = [
-    { name: 'STUPA', points: 'Puntos', price: '$10', image: '../../../assets/slides/tapia.jpg' },
-    { name: 'CHINGOTO', points: 'Puntos', price: '$20', image: '../../../assets/slides/tapia.jpg' },
-    { name: 'GARRIDO', points: 'Puntos', price: '$30', image: '../../../assets/slides/tapia.jpg' },
-    { name: 'LAMPERTI', points: 'Puntos', price: '$40', image: '../../../assets/slides/tapia.jpg' },
-  ];
- 
+export class MercadoPage implements OnInit {
+
+  public userItems: Item[] = [];
+  public items: Item[] = [];
   public timeInSeconds = 24 * 60 * 60;
- 
+  public userCash: number = 50;
+
   public config: CountdownConfig = {
     leftTime: this.timeInSeconds * 1000,
     format: 'HH:mm:ss',
     stopTime: new Date().getTime() + this.timeInSeconds * 1000
   };
- 
+
+  constructor(private playerService: PlayerService) { }
+
+  ngOnInit() {
+    this.playerService.getRandomPlayers().subscribe((players) => {
+      this.items = players;
+    });
+  
+    this.playerService.getUserPlayers().subscribe((players) => {
+      this.userItems = players;
+    });
+
+    // Inicializar el cash del usuario
+    this.playerService.getUserCash().subscribe((data) => {
+      this.userCash = data.cash;
+    });
+  }
+  
+
   comprar(item: Item) {
-    console.log('Comprando ' + item.name);
+    this.playerService.buyPlayer(item.id).subscribe(
+      response => {
+        console.log('Jugador comprado: ' + item.name);
+        // Actualizar la lista de jugadores del usuario y eliminar el jugador comprado del mercado
+        this.userItems = [...this.userItems, item];
+        this.items = this.items.filter(player => player.id !== item.id);
+
+        // Actualizar el cash del usuario
+        this.playerService.getUserCash().subscribe((data) => {
+          this.userCash = data.cash;
+        });
+      },
+      error => {
+        console.log('Hubo un error al comprar el jugador: ', error);
+      }
+    );
   }
- 
+  
   vender(item: Item) {
-    console.log('Vendiendo ' + item.name);
+    this.playerService.sellPlayer(item.id).subscribe(
+      response => {
+        console.log('Jugador vendido: ' + item.name);
+        // Actualizar la lista de jugadores del usuario y agregar el jugador vendido al mercado
+        this.userItems = this.userItems.filter(player => player.id !== item.id);
+        this.items = [...this.items, item];
+
+        // Actualizar el cash del usuario
+        this.playerService.getUserCash().subscribe((data) => {
+          this.userCash = data.cash;
+        });
+      },
+      error => {
+        console.log('Hubo un error al vender el jugador: ', error);
+      }
+    );
   }
- 
+  
 }
