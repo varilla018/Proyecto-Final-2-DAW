@@ -118,7 +118,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'Veranode1977_',
         'HOST': 'localhost',  # o '127.0.0.1' si estás utilizando una conexión local
-        'PORT': '5432',
+        'PORT': '1907',
     }
 }
 
