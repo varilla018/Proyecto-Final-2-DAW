@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8100',
+    'http://87.219.68.12:8100'
       # o el origen de tu aplicación Angular
 ]
 
