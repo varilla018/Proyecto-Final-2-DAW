@@ -81,45 +81,6 @@
               </div>
               
             <!--CARDS TORNEOS-->
-
-            <div class="div4">
-                <h1 class="titulo2">PRÓXIMOS TORNEOS</h1><br>
-                <p class="parrafoCards">Aqui tienes los proximos torneos previstos de World Padel Tour como de Premier
-                    Padel.</p>
-            </div>
-            <div class="div5">
-                <ion-slides pager="true" [options]="slideOpts">
-                    <ion-slide *ngFor="let slide of slides">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col>
-                                    <img [src]="slide.image">
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col>
-                                    <h2>{{ slide.title }}</h2>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row class="subtitle-row">
-                                <ion-col size="auto" class="icon-col">
-                                    <ion-icon name="calendar"></ion-icon>
-                                </ion-col>
-                                <ion-col>
-                                    <p class="subtittleTorneos">{{ slide.subtitle }}</p>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col>
-                                    <ion-button routerLink="/torneos">{{ slide.button }}</ion-button>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-slide>
-                </ion-slides>
-
-
-            </div>
         </div>
 
     </ion-content>
