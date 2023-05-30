@@ -117,7 +117,7 @@ DATABASES = {
         'NAME': 'PadelMatch2.0',
         'USER': 'postgres',
         'PASSWORD': 'Veranode1977_',
-        'HOST': 'localhost',  # o '127.0.0.1' si estás utilizando una conexión local
+        'HOST': '164.90.213.232',  # o '127.0.0.1' si estás utilizando una conexión local
         'PORT': '1907',
     }
 }
