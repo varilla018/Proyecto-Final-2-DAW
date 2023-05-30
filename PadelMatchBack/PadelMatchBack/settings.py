@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-=r+q8^@_uqe$=pww&kz=4#yzu)a$1wpo-ukeulz4c-^@(@$zhs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'api-padelmatch.duckdns.org']
 
 
 # Application definition
@@ -117,8 +117,8 @@ DATABASES = {
         'NAME': 'PadelMatch2.0',
         'USER': 'postgres',
         'PASSWORD': 'Veranode1977_',
-        'HOST': '164.90.213.232',  # o '127.0.0.1' si estás utilizando una conexión local
-        'PORT': '1907',
+        'HOST': 'localhost',  # o '127.0.0.1' si estás utilizando una conexión local
+        'PORT': '5432',
     }
 }
 
