@@ -7,6 +7,7 @@ class Player(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
     ranking = models.IntegerField()
+    tournament_points = models.IntegerField(default=0) # Nuevo campo para puntos de torneo
     points = models.IntegerField()
     winrate = models.FloatField()
     price = models.FloatField()
