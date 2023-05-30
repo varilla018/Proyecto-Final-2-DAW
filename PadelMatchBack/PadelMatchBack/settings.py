@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'leagues',
     'tournaments',
     'players',
+    'match',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_docs',

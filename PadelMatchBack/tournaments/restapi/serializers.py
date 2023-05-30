@@ -2,12 +2,19 @@ from rest_framework import serializers
 from tournaments.models import Tournament
 from leagues.models import League
 
+from rest_framework import serializers
+from tournaments.models import Tournament
+from leagues.models import League
+
 class TournamentSerializer(serializers.ModelSerializer):
-    league = serializers.SlugRelatedField(
+    leagues = serializers.SlugRelatedField(
         slug_field='name',
-        queryset=League.objects.all()
+        queryset=League.objects.all(),
+        many=True,
+        required=False
     )
 
     class Meta:
         model = Tournament
-        fields = ['id', 'name', 'location', 'start_date', 'end_date', 'league']
+        fields = ['id', 'name', 'location', 'start_time', 'end_time', 'leagues']
+

@@ -8,22 +8,38 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid class="ion-text-center ion-padding">
-      <ion-row>
-        <ion-col>
-          <h1>Esta página está en construcción</h1>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-img src="../../../assets/slides/enConstruccion.jpg"></ion-img>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-grid class="ion-text-center ion-padding">
+    <ion-row>
+      <ion-col>
+        <form (ngSubmit)="createTournament()">
+          <ion-item>
+            <ion-label>Name</ion-label>
+            <ion-input [(ngModel)]="tournamentData.name" name="name" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Location</ion-label>
+            <ion-input [(ngModel)]="tournamentData.location" name="location" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Start date</ion-label>
+            <ion-datetime [(ngModel)]="tournamentData.start_time" name="start_date"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>End date</ion-label>
+            <ion-datetime [(ngModel)]="tournamentData.end_time" name="end_date"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>League</ion-label>
+            <ion-select [(ngModel)]="tournamentData.league" name="league">
+              <ion-select-option *ngFor="let league of leagues" [value]="league.name">{{league.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-button expand="full" type="submit">Create Tournament</ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+
 </ion-content>
-
-<!-- MENU-->
-
-
-
-

@@ -6,8 +6,8 @@ class Tournament(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()  # Nuevo campo para la fecha de finalización
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
     players = models.ManyToManyField('players.Player', related_name='tournaments')
     leagues = models.ManyToManyField(League, related_name='tournaments')  # Relación con el modelo League
 
