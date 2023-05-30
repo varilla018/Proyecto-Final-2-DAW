@@ -42,4 +42,4 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = ['first_name', 'email']  # Incluye todos los campos que quieres devolver
+        fields = ['first_name', 'email', 'userPoints']  # Incluye todos los campos que quieres devolver

@@ -41,9 +41,10 @@ export class MyLeaguesPage implements OnInit {
 
   loadLeagueUsers() {
     this.leagueService.getLeagueUsers(this.leagueId).subscribe((users: any[]) => {
-      this.leagueUsers = users;
+        // Ordena los usuarios por sus puntos (de mayor a menor)
+        this.leagueUsers = users.sort((a, b) => parseFloat(b.userPoints) - parseFloat(a.userPoints));
     }, error => {
-      console.log(error);
+        console.log(error);
     });
   }
 }

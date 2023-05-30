@@ -19,12 +19,10 @@ class Users(AbstractBaseUser):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255)
     cash = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # Nuevo campo 'cash'
+    userPoints = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # Nuevo campo 'userPoints'
 
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name']
-
-    

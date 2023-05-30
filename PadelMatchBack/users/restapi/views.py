@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import RegisterUserSerializer, LoginSerializer
+from .serializers import RegisterUserSerializer, LoginSerializer, UserSerializer
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -10,6 +10,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from users.models import Users  # Asegúrate de que el import sea correcto
 from players.models import Player  # Asegúrate de que el import sea correcto
+from rest_framework import generics, permissions
 
 import random
 
@@ -39,7 +40,7 @@ def register_user(request):
         response_data = serializer.save()
         return Response(response_data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
- 
+
 
 class LoginView(APIView):
     def post(self, request, format=None):
@@ -58,6 +59,7 @@ class LoginView(APIView):
         # Asigna jugadores si el usuario está iniciando sesión por primera vez
         if not user.players.exists():
             assign_players_to_new_user(user)
+            update_user_points(user)  # Actualiza los puntos del usuario después de asignar jugadores
 
         refresh = RefreshToken.for_user(user)
         user_id = user.id  # Obtén el ID del usuario
@@ -86,3 +88,18 @@ class GetUserIDView(APIView):
     def get(self, request):
         user_id = request.user.id
         return Response({'user_id': user_id})
+
+
+def update_user_points(user):
+    # Calcula la suma total de puntos de los jugadores del usuario
+    total_points = sum(player.points for player in user.players.all())
+
+    # Actualiza el campo userPoints del usuario
+    user.userPoints = total_points
+    user.save()
+
+
+class UserView(generics.RetrieveAPIView):
+    queryset = Users.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'pk'

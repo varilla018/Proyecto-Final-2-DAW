@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from users.restapi.views import update_user_points
 from players.models import Player
 from players.restapi.serializers import PlayerSerializer
 from users.models import Users
@@ -59,6 +60,9 @@ class PlayerViewSet(viewsets.ModelViewSet):
             user.cash = F('cash') - player.price  # Restar el precio del jugador al cash del usuario
             user.save()
 
+            update_user_points(user)  # Actualizar los puntos del usuario después de comprar el jugador
+
+
         return Response(status=status.HTTP_200_OK)
 
     @action(detail=False, methods=['post'])
@@ -79,6 +83,9 @@ class PlayerViewSet(viewsets.ModelViewSet):
             user.players.remove(player)
             user.cash = F('cash') + player.price  # Añadir el precio del jugador al cash del usuario
             user.save()
+
+            update_user_points(user)  # Actualizar los puntos del usuario después de vender el jugador
+
 
         return Response(status=status.HTTP_200_OK)
     

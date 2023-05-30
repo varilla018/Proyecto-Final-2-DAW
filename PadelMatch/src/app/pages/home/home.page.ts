@@ -24,10 +24,19 @@ export class HomePage implements OnInit {
     centeredSlides: true
   };
 
-  constructor(private playerService: PlayerService) {}  // Actualizar a PlayerService
+  constructor(private playerService: PlayerService) {}
 
   ngOnInit() {
-    this.playerService.getUserPlayers().subscribe(  // Actualizar a getUserPlayers
+    this.loadPlayers();
+  }
+
+  // Se ejecutará cada vez que esta página esté a punto de convertirse en la vista activa.
+  ionViewWillEnter() {
+    this.loadPlayers();
+  }
+
+  loadPlayers() {
+    this.playerService.getUserPlayers().subscribe(
       data => {
         this.players = data;
       },
