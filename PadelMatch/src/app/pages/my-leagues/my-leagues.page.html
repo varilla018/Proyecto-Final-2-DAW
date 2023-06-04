@@ -17,10 +17,10 @@
     </ion-card-header>
     <ion-card-content>
       <div class="league-actions">
-        <ion-button class="action-button">
+        <ion-button class="action-button" (click)="shareLeague()">
           <ion-icon name="logo-whatsapp"></ion-icon> COMPARTIR LIGA
         </ion-button>
-        <ion-button class="action-button1">COPIAR CÓDIGO</ion-button>
+        <ion-button class="action-button1" (click)="copyToClipboard()">COPIAR CÓDIGO</ion-button>        
       </div>
     </ion-card-content>
   </ion-card>
@@ -50,6 +50,5 @@
         </div>
     </ion-card-content>
 </ion-card>
-
 
 </ion-content>

@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-grid class="ion-text-center ion-padding">
-    <ion-row>
+    <ion-row *ngIf="isAdmin">
       <ion-col>
         <form (ngSubmit)="createTournament()">
           <ion-item>
@@ -38,8 +38,22 @@
         </form>
       </ion-col>
     </ion-row>
-  </ion-grid>
 
-  
+    <ion-grid *ngIf="!isAdmin">
+      <ion-row>
+        <ion-col>
+          <ion-slides [options]="slideOptions" #slides>
+            <ion-slide *ngFor="let tournament of tournaments">
+              <div class="slide-container">
+                <img class="slide-image" [src]="tournament.image" alt="Tournament Image">
+                <h2>{{ tournament.title }}</h2>
+                <p>{{ tournament.description }}</p>
+              </div>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
 
 </ion-content>

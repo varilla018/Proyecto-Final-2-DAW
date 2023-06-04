@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LeagueService } from '../../services/league.service';
+import { Clipboard } from '@capacitor/clipboard';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-my-leagues',
@@ -14,7 +16,8 @@ export class MyLeaguesPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private leagueService: LeagueService
+    private leagueService: LeagueService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -47,4 +50,27 @@ export class MyLeaguesPage implements OnInit {
         console.log(error);
     });
   }
+
+  async copyToClipboard() {
+    await Clipboard.write({
+      string: this.league.codeLeague
+    });
+    this.presentToast();
+  }
+
+  shareLeague() {
+    const message = `Únete a nuestra liga en la aplicación de Padel! El código de la liga es: ${this.league.codeLeague}`;
+    const url = `whatsapp://send?text=${encodeURIComponent(message)}`;
+    window.open(url, '_system');
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Código copiado!',
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present();
+}
+
 }

@@ -9,3 +9,43 @@
     max-height: 400px;
   }
   
+  .slide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .slide-image {
+    width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
+  }
+  
+  .slide-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .slide-description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .slide-container {
+    display: flex; /* Utiliza el modelo de caja flexible para alinear verticalmente la imagen */
+    flex-direction: column; /* Apila los elementos en una columna */
+    justify-content: center; /* Centra verticalmente los elementos en el contenedor */
+    align-items: center; /* Centra horizontalmente los elementos en el contenedor */
+  }
+  
+  .slide-image {
+    width: 100%; /* Establece un ancho del 100% para que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente para mantener la proporción */
+    max-height: 200px; /* Establece una altura máxima para todas las imágenes */
+    object-fit: contain; /* Ajusta la imagen para que se ajuste dentro del contenedor sin recortarla */
+  }
+  
+  
