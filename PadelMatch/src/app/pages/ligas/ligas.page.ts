@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { LeagueService } from '../../services/league.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-ligas',
@@ -15,15 +16,27 @@ export class LigasPage implements OnInit {
   nombreLiga2: string = '';
   userLeagues: any[] = [];
 
-  constructor(public _alertController: AlertController, private leagueService: LeagueService, private router: Router) { }
+  constructor(public _alertController: AlertController, private leagueService: LeagueService, private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/ligas') {
+        this.loadUserLeagues();
+      }
+    });
+  }
 
   ngOnInit() {
-    this.loadUserLeagues(); // Cargar las ligas del usuario al inicializar la página
+    // this.loadUserLeagues(); // Not needed anymore, because it's handled by the router event subscription now
   }
 
   loadUserLeagues() {
-    const userId = localStorage.getItem('user_id');
-    
+    const token = localStorage.getItem('access_token');
+    let userId: string = '';
+
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      userId = decodedToken.user_id;
+    }
+
     this.leagueService.getUserLeagues().subscribe((leagues: any[]) => {
       this.userLeagues = leagues.map((league: any) => {
         league.isUserCreator = league.creator == userId; // Establecer isUserCreator basándose en si el id del creador de la liga es igual al id del usuario
@@ -32,9 +45,7 @@ export class LigasPage implements OnInit {
     }, error => {
       console.log(error);
     });
-}
-
-
+  }
 
   buscar() {
     console.log(this.codigoLiga);
@@ -113,10 +124,19 @@ export class LigasPage implements OnInit {
   
     await alert.present();
   }
-  
 
+  
   goToLeagueDetails(leagueId: number) {
     this.router.navigate(['/my-leagues', leagueId]);
   }
-
+  
 }
+
+
+
+
+
+  
+
+
+

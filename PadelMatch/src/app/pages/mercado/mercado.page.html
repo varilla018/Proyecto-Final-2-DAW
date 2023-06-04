@@ -33,7 +33,7 @@
       <ion-col size="6" *ngFor="let item of userItems">
         <ion-card>
           <div class="image-container">
-            <img class="player-image" src="../../../assets/slides/avatar2.jpg">
+            <img [src]="item.image_url" class="player-image">
           </div>
           <ion-card-header>
             <ion-card-title class="player-name">{{ item.name }}</ion-card-title>
@@ -74,7 +74,7 @@
       <ion-col size="6" *ngFor="let item of items">
         <ion-card>
           <div class="image-container">
-          <img class="player-image" src="../../../assets/slides/avatar2.jpg">
+            <img [src]="item.image_url" class="player-image">
           </div>
           <ion-card-header>
             <ion-card-title class="player-name">{{ item.name }}</ion-card-title>
@@ -93,13 +93,11 @@
             <ion-col>
               <ion-button expand="block" (click)="comprar(item)">Comprar</ion-button>
             </ion-col>
-            <ion-col>
-              <ion-button expand="block" (click)="vender(item)">Vender</ion-button>
-            </ion-col>
           </ion-row>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 
 </ion-content>

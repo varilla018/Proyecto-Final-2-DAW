@@ -62,24 +62,24 @@
             <!--CARDS JUGADORES-->
             <div class="div2">
                 <ion-row>
-                  <ion-col size="6" *ngFor="let player of players">
-                    <ion-card>
-                        <div class="image-container">
-                            <img src="../../../assets/slides/avatar2.jpg" class="circle-image" alt="Circular Image">
-                        </div>
-                      <ion-card-header>
-                        <ion-card-title class="tituloCard">{{ player.name }}</ion-card-title>
-                        <ion-card-title class="tituloCard">{{ player.surname }}</ion-card-title>
-                        <ion-card-subtitle>Puntuación</ion-card-subtitle>
-                      </ion-card-header>
-                      <ion-card-content>
-                        Puntos: {{ player.points }}
-                      </ion-card-content>
-                    </ion-card>
-                  </ion-col>
+                    <ion-col size="6" *ngFor="let player of players">
+                        <ion-card>
+                            <div class="image-container">
+                                <img [src]="player.image_url" class="circle-image" alt="Circular Image">
+                            </div>
+                            <ion-card-header>
+                                <ion-card-title class="tituloCard">{{ player.name }}</ion-card-title>
+                                <ion-card-title class="tituloCard">{{ player.surname }}</ion-card-title>
+                                <ion-card-subtitle>Puntuación</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+                                Puntos: {{ player.points }}
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
                 </ion-row>
-              </div>
-              
+            </div>
+
             <!--CARDS TORNEOS-->
         </div>
 

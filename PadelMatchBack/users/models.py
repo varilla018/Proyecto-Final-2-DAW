@@ -21,6 +21,7 @@ class Users(AbstractBaseUser):
     email = models.EmailField(unique=True)
     cash = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # Nuevo campo 'cash'
     userPoints = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # Nuevo campo 'userPoints'
+    is_admin = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 

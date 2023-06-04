@@ -43,7 +43,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
     @action(detail=False, methods=['post'])
     def buy_player(self, request):
-        user_id = request.headers.get('User-Id')  # Obtener el user_id de las cabeceras HTTP
+        user_id = request.headers.get('User-Id')
         player_id = request.data.get('player_id')
 
         try:
@@ -57,17 +57,14 @@ class PlayerViewSet(viewsets.ModelViewSet):
 
         with transaction.atomic():
             user.players.add(player)
-            user.cash = F('cash') - player.price  # Restar el precio del jugador al cash del usuario
-            user.save()
-
-            update_user_points(user)  # Actualizar los puntos del usuario después de comprar el jugador
-
+            user.cash = F('cash') - player.price
+            user.save(update_fields=['cash'])
 
         return Response(status=status.HTTP_200_OK)
 
     @action(detail=False, methods=['post'])
     def sell_player(self, request):
-        user_id = request.headers.get('User-Id')  # Obtener el user_id de las cabeceras HTTP
+        user_id = request.headers.get('User-Id')
         player_id = request.data.get('player_id')
 
         try:
@@ -81,13 +78,11 @@ class PlayerViewSet(viewsets.ModelViewSet):
 
         with transaction.atomic():
             user.players.remove(player)
-            user.cash = F('cash') + player.price  # Añadir el precio del jugador al cash del usuario
-            user.save()
-
-            update_user_points(user)  # Actualizar los puntos del usuario después de vender el jugador
-
+            user.cash = F('cash') + player.price
+            user.save(update_fields=['cash'])
 
         return Response(status=status.HTTP_200_OK)
+
     
 
     @action(detail=False, methods=['get'])

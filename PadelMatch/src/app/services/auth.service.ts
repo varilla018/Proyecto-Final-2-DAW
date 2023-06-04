@@ -22,7 +22,6 @@ export class AuthService {
     return this.http.post<any>(url, user).pipe(
       tap((data: any) => {
         localStorage.setItem('access_token', data.access);
-        localStorage.setItem('user_id', data.user_id); //Asegúrate de que el back-end está enviando el user_id después de iniciar sesión.
       })
     );
   }
@@ -31,20 +30,11 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  getUserID(): string | null {
-    return localStorage.getItem('user_id');
-  }
-
   getUserDetails(): Observable<any> {
     const token = this.getAccessToken();
-    const userId = this.getUserID();
 
     if (!token) {
       throw new Error("Access token is not available in localStorage");
-    }
-
-    if (!userId) {
-      throw new Error("User id is not available in localStorage");
     }
 
     const httpOptions = {
@@ -54,7 +44,7 @@ export class AuthService {
       })
     };
 
-    return this.http.get<any>(`${this.apiUrl}users/${userId}/`, httpOptions);
+    return this.http.get<any>(`${this.apiUrl}users/me/`, httpOptions);
   }
 
 }

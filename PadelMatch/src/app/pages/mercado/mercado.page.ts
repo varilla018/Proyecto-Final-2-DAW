@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CountdownConfig } from 'ngx-countdown';
 import { PlayerService } from '../../services/players.service';
+import { ToastController } from '@ionic/angular';
 
 interface Item {
   id: string;
@@ -10,6 +11,7 @@ interface Item {
   points: number;
   winrate: number;
   price: number;
+  image_url: string;  // Añade esta línea
 }
 
 @Component({
@@ -30,13 +32,13 @@ export class MercadoPage implements OnInit {
     stopTime: new Date().getTime() + this.timeInSeconds * 1000
   };
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private toastController: ToastController) { }
 
   ngOnInit() {
     this.playerService.getRandomPlayers().subscribe((players) => {
       this.items = players;
     });
-  
+
     this.playerService.getUserPlayers().subscribe((players) => {
       this.userItems = players;
     });
@@ -46,27 +48,39 @@ export class MercadoPage implements OnInit {
       this.userCash = data.cash;
     });
   }
-  
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Dinero insuficiente para comprar este jugador.',
+      duration: 2000
+    });
+    toast.present();
+  }
 
   comprar(item: Item) {
-    this.playerService.buyPlayer(item.id).subscribe(
-      response => {
-        console.log('Jugador comprado: ' + item.name);
-        // Actualizar la lista de jugadores del usuario y eliminar el jugador comprado del mercado
-        this.userItems = [...this.userItems, item];
-        this.items = this.items.filter(player => player.id !== item.id);
+    // Comprobar si el usuario tiene suficiente dinero para comprar el jugador
+    if (item.price > this.userCash) {
+      this.presentToast();
+    } else {
+      this.playerService.buyPlayer(item.id).subscribe(
+        response => {
+          console.log('Jugador comprado: ' + item.name);
+          // Actualizar la lista de jugadores del usuario y eliminar el jugador comprado del mercado
+          this.userItems = [...this.userItems, item];
+          this.items = this.items.filter(player => player.id !== item.id);
 
-        // Actualizar el cash del usuario
-        this.playerService.getUserCash().subscribe((data) => {
-          this.userCash = data.cash;
-        });
-      },
-      error => {
-        console.log('Hubo un error al comprar el jugador: ', error);
-      }
-    );
+          // Actualizar el cash del usuario
+          this.playerService.getUserCash().subscribe((data) => {
+            this.userCash = data.cash;
+          });
+        },
+        error => {
+          console.log('Hubo un error al comprar el jugador: ', error);
+        }
+      );
+    }
   }
-  
+
   vender(item: Item) {
     this.playerService.sellPlayer(item.id).subscribe(
       response => {

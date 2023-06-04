@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@capacitor/share": "^4.1.1",
-    "jetifier": "^2.0.0"
+    "@ionic-native/camera": "^5.36.0",
+    "jetifier": "^2.0.0",
+    "jwt-decode": "^3.1.2"
   }
 }

@@ -3,14 +3,13 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import RegisterUserSerializer, LoginSerializer, UserSerializer
 from rest_framework.views import APIView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from users.models import Users  # Asegúrate de que el import sea correcto
 from players.models import Player  # Asegúrate de que el import sea correcto
-from rest_framework import generics, permissions
+from rest_framework import generics
+from rest_framework.decorators import api_view, permission_classes
 
 import random
 
@@ -62,33 +61,21 @@ class LoginView(APIView):
             update_user_points(user)  # Actualiza los puntos del usuario después de asignar jugadores
 
         refresh = RefreshToken.for_user(user)
-        user_id = user.id  # Obtén el ID del usuario
 
         return Response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-            'user_id': user_id  # Incluye el ID del usuario en la respuesta
         })
-
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def protected_view(request):
-    user = JWTAuthentication().authenticate(request)
+    user = request.user
     if user is not None:
-        user_id = user[0].id
+        user_id = user.id
         return Response({'user_id': user_id})
     else:
         return Response({'error': 'Usuario no autenticado'}, status=status.HTTP_401_UNAUTHORIZED)
-
-
-class GetUserIDView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        user_id = request.user.id
-        return Response({'user_id': user_id})
-
 
 def update_user_points(user):
     # Calcula la suma total de puntos de los jugadores del usuario
@@ -98,8 +85,11 @@ def update_user_points(user):
     user.userPoints = total_points
     user.save()
 
-
 class UserView(generics.RetrieveAPIView):
     queryset = Users.objects.all()
     serializer_class = UserSerializer
-    lookup_field = 'pk'
+
+    def get_object(self):
+        # Retorna el usuario asociado con la solicitud
+        return self.request.user
+
